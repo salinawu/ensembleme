@@ -1,0 +1,21 @@
+<p>
+  <strong>Location:</strong>
+  <%= @posting.location %>
+</p>
+
+<p>
+  <strong>Expertise:</strong>
+  <%= @posting.expertise %>
+</p>
+
+<p>
+  <strong>Commitment:</strong>
+  <%= @posting.commitment %>
+</p>
+
+<p>
+  <strong>Ensemble:</strong>
+  <%= @posting.ensemble %>
+</p>
+<%= link_to 'Edit', edit_posting_path(@posting) %> |
+<%= link_to 'Back', postings_path %>

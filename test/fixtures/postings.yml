@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location: MyString
+  expertise: MyString
+  commitment: MyString
+  ensemble: MyString
+
+two:
+  location: MyString
+  expertise: MyString
+  commitment: MyString
+  ensemble: MyString
