@@ -7,3 +7,7 @@
 # two:
 #   name: MyString
 #   email: MyString
+microte:
+  name: "Test User"
+  email: "test_user@example.com"
+  password_digest: <%= User.digest("password")%>
