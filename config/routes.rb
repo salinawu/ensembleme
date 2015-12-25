@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -12,6 +14,9 @@ Rails.application.routes.draw do
   get 'about'   => 'users#about'
   get 'contact' => 'users#contact'
   get 'signup'  => 'users#new'
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
   resources :users
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
