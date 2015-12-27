@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # @postings = @user.postings.paginate(page: params[:page])
   end
 
   def new
@@ -19,9 +20,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      flash[:success] = "Welcome to your profile!"
-      redirect_to @user
+      # log_in @user
+      # flash[:success] = "Welcome to your profile!"
+      # redirect_to @user
+
+      #if you want account activation upon signup
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
       # Handle a successful save.
     else
       render 'new'
@@ -43,15 +49,6 @@ class UsersController < ApplicationController
      end
    end
 
-  # Confirms a logged-in user.
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = "Please log in."
-      redirect_to login_url
-    end
-  end
-
   # Confirms the correct user.
   def correct_user
     @user = User.find(params[:id])
@@ -63,6 +60,7 @@ class UsersController < ApplicationController
     flash[:success] = "User deleted"
     redirect_to users_url
   end
+
 
   private
 
