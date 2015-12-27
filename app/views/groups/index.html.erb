@@ -1,0 +1,16 @@
+<h1>Listing groups</h1>
+
+<%= link_to 'New group', new_group_path %>
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+  <% @groups.each do |g| %>
+    <tr>
+      <td><%= g.name %></td>
+      <td><%= link_to 'Show', group_path(g) %></td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to 'Home',root_path %>
