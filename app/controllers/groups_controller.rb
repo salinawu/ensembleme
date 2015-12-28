@@ -8,6 +8,21 @@ class GroupsController < ApplicationController
     @groups = Group.all
   end
 
+  def join
+    @group = Group.find(params[:id])
+    current_user.groups << @group
+    redirect_to @group
+  end
+
+  def leave
+    @group = Group.find(params[:id])
+    @group.users.delete(current_user)
+    if @group.users.length == 0
+      @group.destroy
+    end
+    redirect_to current_user
+  end
+
   def create
     @group = Group.new(group_params)
     @group.users << current_user
@@ -17,6 +32,13 @@ class GroupsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+
+    redirect_to groups_path
   end
 
   private

@@ -6,3 +6,10 @@
 
     </tr>
 <% end %>
+<% if logged_in? %>
+  <% if @group.users.include?(current_user) %>
+    <%= link_to 'leave', leave_group_path(@group) %>
+  <% else %>
+    <%= link_to 'join', join_group_path(@group) %>
+  <% end %>
+<% end %>
