@@ -3,7 +3,11 @@ class PostingsController < ApplicationController
   # http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
 
   def index
-    @postings = Posting.all
+    if params[:search].present?
+      @postings = Posting.near(params[:search], 30)
+    else
+      @postings = Posting.all
+    end
   end
 
   def edit
@@ -20,7 +24,7 @@ class PostingsController < ApplicationController
 
   def create
     @posting = Posting.new(posting_params)
-
+    @posting.user_id = current_user.id
     if @posting.save
       redirect_to @posting
     else

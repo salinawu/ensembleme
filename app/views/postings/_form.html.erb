@@ -21,17 +21,17 @@
 
   <p>
     <%= f.label :expertise %><br>
-    <%= f.text_field :expertise %>
+    <%= f.range_field :expertise %>
   </p>
 
   <p>
     <%= f.label :commitment %><br>
-    <%= f.text_field :commitment %>
+    <%= f.range_field :commitment %>
   </p>
 
   <p>
     <%= f.label :ensemble %><br>
-    <%= f.text_field :ensemble %>
+    <%= f.select :ensemble, ["Quartet", "Trio", "Piano", "String", "Wind"] %>
   </p>
 
   <p>

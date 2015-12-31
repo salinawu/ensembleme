@@ -9,6 +9,34 @@
       </h1>
     </section>
   </aside>
+  <section>
+    <h3>Groups</h3>
+    <% @user.groups.each do |group| %>
+      <tr>
+        <td><%= group.name %></td>
+        <% if logged_in? %>
+          <%= link_to 'leave', leave_group_path(group),
+                  data: { confirm: 'Are you sure?' } %>
+        <% end %> 
+      </tr>
+    <% end %>
+  </section>
+  <section>
+    <h3>Posts</h3>
+    <% @user.postings.each do |posting| %>
+      <tr>
+        <td><%= posting.location %></td>
+        <td><%= posting.expertise %></td>
+        <td><%= posting.commitment %></td>
+        <td><%= posting.ensemble %></td>
+        <% if logged_in? %>
+          <td><%= link_to 'Destroy', posting_path(posting),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </section>
 </div>
 <%= link_to 'New posting', new_posting_path %>
 <%= link_to 'Postings', controller: 'postings' %>

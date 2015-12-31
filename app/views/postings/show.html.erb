@@ -1,4 +1,8 @@
 <p>
+  <strong>Author:</strong>
+  <%= User.find_by_id(@posting.user_id).name %>
+</p>
+<p>
   <strong>Location:</strong>
   <%= @posting.location %>
 </p>
@@ -17,5 +21,15 @@
   <strong>Ensemble:</strong>
   <%= @posting.ensemble %>
 </p>
-<%= link_to 'Edit', edit_posting_path(@posting) %> |
+
+<h3>Nearby postings</h3>
+<ul>
+<% for posting in @posting.nearbys(10) %>
+  <li><%= link_to posting.location, posting %> (<%= posting.distance.round(2) %> miles)</li>
+<% end %>
+</ul>
+
+<% if User.find_by_id(@posting.user_id) == current_user %>
+  <%= link_to 'Edit', edit_posting_path(@posting) %> |
+<% end %>
 <%= link_to 'All postings', postings_path %>

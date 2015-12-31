@@ -17,6 +17,7 @@ class GroupsController < ApplicationController
   def leave
     @group = Group.find(params[:id])
     @group.users.delete(current_user)
+    current_user.groups.delete(@group)
     if @group.users.length == 0
       @group.destroy
     end
@@ -25,9 +26,10 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    @group.users << current_user
 
     if @group.save
+      @group.users << current_user
+      current_user.groups << @group
       redirect_to @group
     else
       render 'new'
