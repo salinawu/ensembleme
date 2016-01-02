@@ -26,13 +26,13 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    nearby = User.near(params[:location], params[:vicinity])
-    if params[:vicinity].present? and !nearby.empty?
-      @users = nearby
-    else
+    @users = User.near(current_user.location, params[:vicinity])
+    if @users.empty?
+      flash[:info] = current_user.location
+    end
+    if !params[:vicinity].present? or @users.empty?
       @users = User.all
     end
-    @users = User.all
 
     if @group.save
       if params[:members].present?
