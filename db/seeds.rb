@@ -9,6 +9,10 @@ User.create!(name:  "Example User",
              email: "example@railstutorial.org",
              password:              "foobar",
              password_confirmation: "foobar",
+             location: "New York",
+             instrument: "Violin",
+             expertise: "40",
+             commitment: "70",
              admin: true)
 
 99.times do |n|
@@ -18,5 +22,9 @@ User.create!(name:  "Example User",
   User.create!(name:  name,
                email: email,
                password:              password,
-               password_confirmation: password)
+               password_confirmation: password,
+               location: "New York",
+               instrument: "Violin",
+               expertise: "40",
+               commitment: "70")
 end

@@ -5,6 +5,7 @@
       <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
+        <%= @user.instrument %> 
         <div><%= @user.email %></div>
       </h1>
     </section>
@@ -17,7 +18,7 @@
         <% if logged_in? %>
           <%= link_to 'leave', leave_group_path(group),
                   data: { confirm: 'Are you sure?' } %>
-        <% end %> 
+        <% end %>
       </tr>
     <% end %>
   </section>

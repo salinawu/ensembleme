@@ -12,6 +12,18 @@
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
 
+      <%= f.label :location %>
+      <%= f.text_field :location%>
+
+      <%= f.label :instrument %>
+      <%= f.text_field :instrument, class: 'form-control' %>
+
+      <%= f.label :expertise %>
+      <%= f.range_field :expertise, class: 'form-control' %>
+
+      <%= f.label :commitment %>
+      <%= f.range_field :commitment, class: 'form-control' %>
+
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 

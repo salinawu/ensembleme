@@ -6,6 +6,20 @@
   </p>
 
   <p>
+    <%= "Instruments needed" %>
+    <%= f.label :members do %>
+      <%= text_field_tag 'members' %>
+    <% end %>
+  </p>
+
+  <p>
+    <%= "Vicinity" %>
+    <%= f.label :vicinity do %>
+      <%= number_field_tag 'vicinity' %>
+    <% end %>
+  </p>
+
+  <p>
     <%= f.submit %>
   </p>
 

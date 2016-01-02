@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :location, presence: true, allow_nil: true
+  validates :instrument, presence: true
+  geocoded_by :location
+  after_validation :geocode, :if => :location_changed?
 
   # Converts email to all lower-case.
   def downcase_email

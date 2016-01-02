@@ -12,25 +12,45 @@ microte:
   email: "test_user@example.com"
   password_digest: <%= User.digest("password")%>
   admin: true
+  location: "New York"
+  instrument: "Violin"
+  expertise: "40"
+  commitment: "70"
 
 archer:
   name: Sterling Archer
   email: duchess@example.gov
   password_digest: <%= User.digest('password') %>
+  location: "New York"
+  instrument: "Violin"
+  expertise: "40"
+  commitment: "70"
 
 lana:
   name: Lana Kane
   email: hands@example.gov
   password_digest: <%= User.digest('password') %>
+  location: "New York"
+  instrument: "Violin"
+  expertise: "40"
+  commitment: "70"
 
 malory:
   name: Malory Archer
   email: boss@example.gov
   password_digest: <%= User.digest('password') %>
+  location: "New York"
+  instrument: "Violin"
+  expertise: "40"
+  commitment: "70"
 
 <% 30.times do |n| %>
 user_<%= n %>:
   name:  <%= "User #{n}" %>
   email: <%= "user-#{n}@example.com" %>
   password_digest: <%= User.digest('password') %>
+  location: "New York"
+  instrument: "Violin"
+  expertise: "40"
+  commitment: "70"
 <% end %>

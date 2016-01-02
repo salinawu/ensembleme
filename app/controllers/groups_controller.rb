@@ -26,11 +26,46 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    nearby = User.near(params[:location], params[:vicinity])
+    if params[:vicinity].present? and !nearby.empty?
+      @users = nearby
+    else
+      @users = User.all
+    end
+    @users = User.all
 
     if @group.save
-      @group.users << current_user
-      current_user.groups << @group
-      redirect_to @group
+      if params[:members].present?
+        instruments = params[:members].split(/[\s,']/)
+        puts instruments
+        instruments.each do |i|
+          xs = @users.select{ |u| u[:instrument].downcase == i.downcase }
+          if !xs.any?
+            break
+          else
+            best = xs.first
+            score = (xs.first.expertise.to_i - current_user.expertise.to_i).abs +
+            (xs.first.commitment.to_i - current_user.commitment.to_i).abs
+          end
+          xs.each do |x|
+            cmp = (x.expertise.to_i - current_user.expertise.to_i).abs +
+            (x.commitment.to_i - current_user.commitment.to_i).abs
+            if cmp <= score
+              best = x
+              score = cmp
+            end
+          end
+          # @users.delete(best)
+          @group.users << best
+        end
+
+        @group.users << current_user
+        redirect_to @group
+      else
+        @group.users << current_user
+        redirect_to @group
+      end
+
     else
       render 'new'
     end
