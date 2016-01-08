@@ -30,8 +30,10 @@
   </p>
 
   <p>
-    <%= f.label :ensemble %><br>
-    <%= f.select :ensemble, ["Quartet", "Trio", "Piano", "String", "Wind"] %>
+    <%= "Ensemble Type" %>
+    <%= f.label :ensemble do %><br>
+      <%= f.text_field :ensemble%>
+    <% end %>
   </p>
 
   <p>

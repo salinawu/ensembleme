@@ -26,37 +26,46 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    @users = User.near(current_user.location, params[:vicinity])
-    if @users.empty?
+    tmp = User.near(current_user.location, params[:vicinity])
+    # flash[:info] = tmp.length
+    if tmp.empty?
       flash[:info] = current_user.location
     end
-    if !params[:vicinity].present? or @users.empty?
-      @users = User.all
+    if !params[:vicinity].present? or tmp.empty?
+      tmp = User.all
     end
 
+    used = []
     if @group.save
       if params[:members].present?
         instruments = params[:members].split(/[\s,']/)
-        puts instruments
+        # flash[:info] = instruments
         instruments.each do |i|
-          xs = @users.select{ |u| u[:instrument].downcase == i.downcase }
+          xs = tmp.select{ |u| u[:instrument].downcase == i.downcase }
+          xs = xs - used
+          # flash[:info] = xs.length
           if !xs.any?
-            break
+            next
           else
+            # flash[:info] = "success"
             best = xs.first
             score = (xs.first.expertise.to_i - current_user.expertise.to_i).abs +
             (xs.first.commitment.to_i - current_user.commitment.to_i).abs
           end
           xs.each do |x|
-            cmp = (x.expertise.to_i - current_user.expertise.to_i).abs +
-            (x.commitment.to_i - current_user.commitment.to_i).abs
-            if cmp <= score
-              best = x
-              score = cmp
+            if used.include?(x)
+              break
+            else
+              cmp = (x.expertise.to_i - current_user.expertise.to_i).abs +
+              (x.commitment.to_i - current_user.commitment.to_i).abs
+              if cmp < score
+                best = x
+                score = cmp
+              end
             end
           end
-          # @users.delete(best)
           @group.users << best
+          used << best
         end
 
         @group.users << current_user
@@ -65,7 +74,6 @@ class GroupsController < ApplicationController
         @group.users << current_user
         redirect_to @group
       end
-
     else
       render 'new'
     end
