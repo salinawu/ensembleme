@@ -5,7 +5,7 @@
       <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
-        <%= @user.instrument %> 
+        <%= @user.instrument %>
         <div><%= @user.email %></div>
       </h1>
     </section>
@@ -14,7 +14,7 @@
     <h3>Groups</h3>
     <% @user.groups.each do |group| %>
       <tr>
-        <td><%= group.name %></td>
+        <td><%= link_to group.name, group_path(group) %></td>
         <% if logged_in? %>
           <%= link_to 'leave', leave_group_path(group),
                   data: { confirm: 'Are you sure?' } %>
@@ -26,7 +26,7 @@
     <h3>Posts</h3>
     <% @user.postings.each do |posting| %>
       <tr>
-        <td><%= posting.location %></td>
+        <td><%= link_to posting.location, posting_path(posting) %></td>
         <td><%= posting.expertise %></td>
         <td><%= posting.commitment %></td>
         <td><%= posting.ensemble %></td>

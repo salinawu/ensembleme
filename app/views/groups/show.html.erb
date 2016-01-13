@@ -1,18 +1,26 @@
 <% @group = Group.find(params[:id]) %>
-<h1><% @group.name %></h1>
+<h2><%= @group.name =%></h2>
+<h3><%= @group.bio =%></h3>
 <% @group.users.each do |user| %>
     <tr>
-      <td><%= user.name %></td>
+      <td><%= link_to user.name, user_path(user) %></td>
       <td><%= user.email %></td>
     </tr>
 <% end %>
 <% if logged_in? %>
   <% if @group.users.include?(current_user) %>
     <%= link_to 'leave', leave_group_path(@group) %>
+    <%= link_to 'Edit', edit_group_path(@group) %>
+    <%= link_to 'New group message', new_message_path(:group_id => @group.id) %>
+    <% @group.messages.each do |m| %>
+        <tr>
+          <td><%= m.body %></td>
+        </tr>
+    <% end %>
   <% else %>
     <%= link_to 'join', join_group_path(@group) %>
   <% end %>
 <% end %>
 <div>
   <%= link_to 'All groups', groups_path %>
-</div> 
+</div>

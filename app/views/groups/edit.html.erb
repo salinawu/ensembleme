@@ -1,0 +1,7 @@
+<% @group = Group.find(params[:id]) %>
+
+<h1>Edit group</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Group', group_path(@group) %>

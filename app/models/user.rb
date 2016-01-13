@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :groups
   has_many :postings, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   # attr_accessor :password, :password_confirmation, :remember_token
   attr_accessor :remember_token

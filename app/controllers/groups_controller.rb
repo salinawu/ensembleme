@@ -26,6 +26,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    flash[:info] = @group.name
     tmp = User.near(current_user.location, params[:vicinity])
     # flash[:info] = tmp.length
     if tmp.empty?
@@ -79,6 +80,16 @@ class GroupsController < ApplicationController
     end
   end
 
+  def update
+    @group = Group.find(params[:id])
+
+    if @group.update(group_params)
+      redirect_to @group
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     @group = Group.find(params[:id])
     @group.destroy
@@ -88,6 +99,6 @@ class GroupsController < ApplicationController
 
   private
     def group_params
-      params.require(:group).permit(:name)
+      params.require(:group).permit(:name, :bio)
     end
 end
