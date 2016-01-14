@@ -1,6 +1,4 @@
 class Message < ActiveRecord::Base
-  belongs_to :user
+  # attr_accessible :body, :commenter, :post
   belongs_to :group
-  validates :user_id, presence: true
-  validates :group_id, presence: true
 end

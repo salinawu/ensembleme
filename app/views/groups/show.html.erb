@@ -11,12 +11,27 @@
   <% if @group.users.include?(current_user) %>
     <%= link_to 'leave', leave_group_path(@group) %>
     <%= link_to 'Edit', edit_group_path(@group) %>
-    <%= link_to 'New group message', new_message_path(:group_id => @group.id) %>
-    <% @group.messages.each do |m| %>
+    <div>
+      <% @group.messages.each do |m| %>
+        <% flash[:danger] = current_user.id%>
+        <%= @user = User.find_by_id(m.user_id).name %>
+
         <tr>
           <td><%= m.body %></td>
         </tr>
+      </div>
     <% end %>
+    <h2>Add a message:</h2>
+      <%= form_for([@group, @group.messages.build]) do |f| %>
+
+        <div class="field">
+          <%= f.label :body %><br />
+          <%= f.text_area :body %>
+        </div>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      <% end %>
   <% else %>
     <%= link_to 'join', join_group_path(@group) %>
   <% end %>

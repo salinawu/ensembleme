@@ -11,12 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113052407) do
+ActiveRecord::Schema.define(version: 20160114060951) do
 
-  create_table "bios", force: :cascade do |t|
-    t.text    "bio",     default: ""
-    t.integer "user_id"
+  create_table "comments", force: :cascade do |t|
+    t.string   "commenter"
+    t.text     "body"
+    t.integer  "posting_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "comments", ["posting_id"], name: "index_comments_on_posting_id"
 
   create_table "groups", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -31,12 +36,14 @@ ActiveRecord::Schema.define(version: 20160113052407) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.text     "body"
     t.integer  "user_id"
+    t.text     "body"
+    t.integer  "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "group_id"
   end
+
+  add_index "messages", ["group_id"], name: "index_messages_on_group_id"
 
   create_table "postings", force: :cascade do |t|
     t.string   "location"

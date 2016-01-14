@@ -9,7 +9,10 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-  resources :postings
+  resources :postings do
+    resources :comments
+  end 
+
   # root             'static_pages#home'
   get 'help'    => 'users#help'
   get 'about'   => 'users#about'
@@ -20,6 +23,7 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   resources :users
   resources :groups do
+    resources :messages
     member do
       get 'join'
       get 'leave'
