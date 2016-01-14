@@ -40,12 +40,14 @@
   </div>
 <% end %>
 
-<h3>Nearby postings</h3>
-<ul>
-<% for posting in @posting.nearbys(10) %>
-  <li><%= link_to posting.location, posting %> (<%= posting.distance.round(2) %> miles)</li>
+<% if @posting.nearbys(10) %>
+  <h3>Nearby postings</h3>
+  <ul>
+  <% for posting in @posting.nearbys(10) %>
+    <li><%= link_to posting.location, posting %> (<%= posting.distance.round(2) %> miles)</li>
+  <% end %>
+  </ul>
 <% end %>
-</ul>
 
 <% if User.find_by_id(@posting.user_id) == current_user %>
   <%= link_to 'Edit', edit_posting_path(@posting) %> |

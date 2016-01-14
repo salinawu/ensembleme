@@ -24,6 +24,7 @@ class PostingsController < ApplicationController
 
   def create
     @posting = Posting.new(posting_params)
+    # @posting.created_at = Time.current
     @posting.user_id = current_user.id
     if @posting.save
       redirect_to @posting

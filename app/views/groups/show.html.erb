@@ -14,11 +14,12 @@
     <div>
       <% @group.messages.each do |m| %>
         <% flash[:danger] = current_user.id%>
-        <%= @user = User.find_by_id(m.user_id).name %>
+        <%= @user = User.find_by_id(current_user.id).name %>
 
         <tr>
           <td><%= m.body %></td>
         </tr>
+        <%= m.created_at.to_formatted_s =%>
       </div>
     <% end %>
     <h2>Add a message:</h2>

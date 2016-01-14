@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :postings do
     resources :comments
-  end 
+  end
 
   # root             'static_pages#home'
   get 'help'    => 'users#help'
