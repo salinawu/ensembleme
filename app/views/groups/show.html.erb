@@ -13,9 +13,8 @@
     <%= link_to 'Edit', edit_group_path(@group) %>
     <div>
       <% @group.messages.each do |m| %>
-        <% flash[:danger] = current_user.id%>
-        <%= @user = User.find_by_id(current_user.id).name %>
-
+        <% flash[:danger] = m.user_id%>
+        <%= @user = User.find_by_id(m.user_id).name %>
         <tr>
           <td><%= m.body %></td>
         </tr>
