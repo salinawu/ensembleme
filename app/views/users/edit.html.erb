@@ -24,13 +24,13 @@
       <%= f.label :commitment %>
       <%= f.range_field :commitment, class: 'form-control' %>
 
-      <%= f.label :bio %>
+      <%= f.label :bio, "User Bio" %>
       <%= f.text_field :bio, class: 'form-control' %>
 
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label :password_confirmation, "Password Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>

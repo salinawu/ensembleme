@@ -1,6 +1,6 @@
 <% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
-
+<center><h1>Sign up</h1>
+<p>Have an account? <%= link_to "Log in here!", login_path %></p></center
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@user) do |f| %>
@@ -24,17 +24,16 @@
       <%= f.label :commitment %>
       <%= f.range_field :commitment, class: 'form-control' %>
 
-      <%= f.label :bio %>
+      <%= f.label :bio, "User Bio" %>
       <%= f.text_field :bio, class: 'form-control' %>
 
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label :password_confirmation, "Password Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
       <%= f.submit "Create my account", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
-<p>Have an account? <%= link_to "Log in here!", login_path %></p>

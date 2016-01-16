@@ -20,21 +20,46 @@
               <h1>EnsembleMe</h1>
             </a>
         </div>
+        <!-- <% if logged_in? %>
+          <li><%= link_to "Profile", current_user %></li>
+          <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+          <li><%= link_to "New Posting", new_posting_path %></li>
+          <li><%= link_to "New Group", new_group_path %></li>
+          <li>
+            <%= link_to "Log out", logout_path, method: "delete" %>
+          </li>
+        <% else %>
+          <li><%= link_to "Log in", login_path %></li>
+        <% end %> -->
         <!-- Collect the nav links, forms, and other content for toggling -->
+        <% if logged_in? %>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                <li class="hidden">
-                    <a class="page-scroll" href="#page-top"></a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#about">About</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#signup">Signup</a>
-                </li>
+              <li><%= link_to "Profile", current_user %></li>
+              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+              <li><%= link_to "New Posting", new_posting_path %></li>
+              <li><%= link_to "New Group", new_group_path %></li>
+              <li>
+                <%= link_to "Log out", logout_path, method: "delete" %>
+              </li>
             </ul>
-        </div>
+          </div> 
+        <% else %>
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav">
+                  <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                  <li class="hidden">
+                      <a class="page-scroll" href="#page-top"></a>
+                  </li>
+                  <li>
+                      <a class="page-scroll" href="#about">About</a>
+                  </li>
+                  <li>
+                      <a class="page-scroll" href="#signup">Sign up</a>
+                  </li>
+              </ul>
+          </div>
+          <% end %>
       </div>
     </nav>
 
