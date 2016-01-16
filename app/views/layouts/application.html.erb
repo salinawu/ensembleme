@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href='https://fonts.googleapis.com/css?family=Raleway|Cabin' rel='stylesheet' type='text/css'>
     <title>EnsembleMe</title>
     <%= stylesheet_link_tag 'application', media: 'all',
                                            'data-turbolinks-track' => true %>
@@ -14,23 +15,15 @@
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">
-            Brand
-          </a>
-        </div>
-      </div>
-      <div class="container">
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home",   '#' %></li>
-            <li><%= link_to "Help",   '#' %></li>
-            <li><%= link_to "Log in", '#' %></li>
-          </ul>
-        </nav>
+        <a class="navbar-brand" href="#">
+          <h1>EnsembleMe</h1>
+        </a>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Sign in</a></li>
+        </ul>
       </div>
     </nav>
-    <div class="row"></div>
     <div class="container">
       <%= yield %>
     </div>
