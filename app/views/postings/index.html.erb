@@ -20,14 +20,13 @@
   <% @postings.each do |posting| %>
     <tr>
       <td><%= posting.location %></td>
-      <td><%= posting.expertise %></td>
-      <td><%= posting.commitment %></td>
+      <td><%= posting.body %></td>
       <td><%= posting.ensemble %></td>
       <td><%= User.find_by_id(posting.user_id).name %></td>
       <td><%= link_to 'Show', posting_path(posting) %></td>
       <% if User.find_by_id(posting.user_id) == current_user %>
         <td><%= link_to 'Edit', edit_posting_path(posting) %></td>
-        <td><%= link_to 'Destroy', posting_path(posting),
+        <td><%= link_to 'Delete', posting_path(posting),
                 method: :delete,
                 data: { confirm: 'Are you sure?' } %></td>
       <% end %>
