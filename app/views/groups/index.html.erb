@@ -4,12 +4,13 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Group Bio</th>
   </tr>
 
   <% @groups.each do |g| %>
     <tr>
-      <td><%= g.name %></td>
-      <td><%= link_to 'Show', group_path(g) %></td>
+      <td><%= link_to g.name, group_path(g) %></td>
+      <td><%= g.bio %></td>
     </tr>
   <% end %>
 </table>

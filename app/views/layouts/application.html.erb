@@ -19,8 +19,19 @@
           <h1>EnsembleMe</h1>
         </a>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Sign in</a></li>
+          <!-- <li><a href="#">Home</a></li>
+          <li><a href="#">Sign in</a></li> -->
+          <% if logged_in? %>
+            <li><%= link_to "Profile", current_user %></li>
+            <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+            <li><%= link_to "New Posting", new_posting_path %></li>
+            <li><%= link_to "New Group", new_group_path %></li>
+            <li>
+              <%= link_to "Log out", logout_path, method: "delete" %>
+            </li>
+          <% else %>
+            <li><%= link_to "Log in", login_path %></li>
+          <% end %>
         </ul>
       </div>
     </nav>

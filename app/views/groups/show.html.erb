@@ -2,25 +2,19 @@
 <h2><%= @group.name =%></h2>
 <h3><%= @group.bio =%></h3>
 <% @group.users.each do |user| %>
-    <tr>
-      <td><%= link_to user.name, user_path(user) %></td>
-      <td><%= user.email %></td>
-    </tr>
+    <ul>
+      <tr>
+        <td><%= link_to user.name, user_path(user) %></td>
+        <td><%= user.email %></td>
+      </tr>
+    </ul> 
 <% end %>
 <% if logged_in? %>
   <% if @group.users.include?(current_user) %>
     <%= link_to 'leave', leave_group_path(@group) %>
     <%= link_to 'Edit', edit_group_path(@group) %>
-    <div>
-      <% @group.messages.each do |m| %>
-        <% flash[:danger] = m.user_id%>
-        <%= @user = User.find_by_id(m.user_id).name %>
-        <tr>
-          <td><%= m.body %></td>
-        </tr>
-        <%= m.created_at.to_formatted_s =%>
-      </div>
-    <% end %>
+    <h2>Messages</h2>
+    <%= render @group.messages %>
     <h2>Add a message:</h2>
       <%= form_for([@group, @group.messages.build]) do |f| %>
 

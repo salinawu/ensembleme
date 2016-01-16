@@ -5,9 +5,9 @@
       <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
-        <%= @user.instrument %>
+        <div><%= @user.instrument %></div> 
         <div><%= @user.email %></div>
-        <div> <%=@user.bio =%> </div> 
+        <div> <%=@user.bio =%> </div>
       </h1>
     </section>
   </aside>
@@ -28,9 +28,6 @@
     <% @user.postings.each do |posting| %>
       <tr>
         <td><%= link_to posting.location, posting_path(posting) %></td>
-        <td><%= posting.expertise %></td>
-        <td><%= posting.commitment %></td>
-        <td><%= posting.ensemble %></td>
         <% if logged_in? %>
           <td><%= link_to 'Destroy', posting_path(posting),
                   method: :delete,
