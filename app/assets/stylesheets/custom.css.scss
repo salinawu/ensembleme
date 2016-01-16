@@ -1,0 +1,70 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* universal */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+}
+
+h2 {
+  font-size: 3.67em;
+}
+p, div {
+  font-family: 'Cabin', sans-serif;
+}
+
+body {
+  padding-top: 70px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.spacer10 {
+    margin-top: 10px;
+}
+
+.spacer20 {
+    margin-top: 20px;
+}
+
+.spacer30 {
+    margin-top: 30px;
+}
+
+.navbar {
+    height: 70px;
+}
+
+.navbar-nav li a {
+  line-height: 40px;
+}
+
+.navbar-brand {
+    padding-top: 0px;
+    line-height: 1;
+}
+
+.navbar-default {
+    background-color: #D2F2FC;
+    border-color: #E7E7E7;
+}
