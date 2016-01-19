@@ -1,17 +1,18 @@
-<h1>Listing groups</h1>
+<br></br>
+<section class="postings">
+  <h1>Listing groups</h1>
 
-<%= link_to 'New group', new_group_path %>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Group Bio</th>
-  </tr>
-
-  <% @groups.each do |g| %>
+  <table>
     <tr>
-      <td><%= link_to g.name, group_path(g) %></td>
-      <td><%= g.bio %></td>
+      <th>Name</th>
+      <th>&emsp;Group Bio</th>
     </tr>
-  <% end %>
-</table>
-<%= link_to 'Home',root_path %>
+
+    <% @groups.each do |g| %>
+      <tr>
+        <td><%= link_to g.name, group_path(g) %></td>
+        <td>&emsp;<%= g.bio %></td>
+      </tr>
+    <% end %>
+  </table>
+</section> 

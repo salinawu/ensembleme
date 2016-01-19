@@ -1,3 +1,5 @@
+<br></br>
+
 <%= form_for @posting do |f| %>
 
   <% if @posting.errors.any? %>
@@ -18,18 +20,21 @@
     <%= f.label :location %><br>
     <%= f.text_field :location %>
   </p>
+  <br></br>
 
   <p>
     <%= f.label :body %><br>
     <%= f.text_field :body %>
   </p>
+  <br></br>
 
   <p>
-    <%= "Ensemble Type" %>
-    <%= f.label :ensemble do %><br>
+    <b> <%= "Ensemble Type" %></b> <div></div>
+    <%= f.label :ensemble do %>
       <%= f.text_field :ensemble%>
     <% end %>
   </p>
+  <br></br>
 
   <p>
     <%= f.submit %>

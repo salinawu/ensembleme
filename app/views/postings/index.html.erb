@@ -1,35 +1,37 @@
-<h1>Listing postings</h1>
+<section class = "postings">
+  <br></br>
+  <h1>Listing postings</h1>
 
-<%= link_to 'New posting', new_posting_path %>
-<table>
-  <tr>
-    <th>Location</th>
-    <th>Group</th>
-    <th>Ensemble</th>
-    <th>Author</th>
-  </tr>
-
-  <%= form_tag postings_path, :method => :get do %>
-    <p>
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag "Search Near", :name => nil %>
-    </p>
-  <% end %>
-
-  <% @postings.each do |posting| %>
+  <%= link_to 'New posting', new_posting_path %>
+  <table>
     <tr>
-      <td><%= posting.location %></td>
-      <td><%= posting.body %></td>
-      <td><%= posting.ensemble %></td>
-      <td><%= User.find_by_id(posting.user_id).name %></td>
-      <td><%= link_to 'Show', posting_path(posting) %></td>
-      <% if User.find_by_id(posting.user_id) == current_user %>
-        <td><%= link_to 'Edit', edit_posting_path(posting) %></td>
-        <td><%= link_to 'Delete', posting_path(posting),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
+      <th>Location&emsp;</th>
+      <th>Group&emsp;</th>
+      <th>Ensemble&emsp;</th>
+      <th>Author&emsp;</th>
     </tr>
-  <% end %>
-</table>
-<%= link_to 'Home',root_path %>
+
+    <%= form_tag postings_path, :method => :get do %>
+      <p>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search Near", :name => nil %>
+      </p>
+    <% end %>
+
+    <% @postings.each do |posting| %>
+      <tr>
+        <td><%= posting.location %></td>
+        <td><%= posting.body %></td>
+        <td><%= posting.ensemble %></td>
+        <td><%= User.find_by_id(posting.user_id).name %></td>
+        <td>&emsp;<%= link_to 'Show', posting_path(posting) %></td>
+        <% if User.find_by_id(posting.user_id) == current_user %>
+          <td>&emsp;<%= link_to 'Edit', edit_posting_path(posting) %></td>
+          <td>&emsp;<%= link_to 'Delete', posting_path(posting),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</section>

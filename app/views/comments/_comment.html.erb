@@ -1,18 +1,12 @@
-<p>
-  <b>Commenter:</b>
-  <%= comment.commenter %>
-</p>
+<li>
+  <p>
+    <%= comment.commenter %>:   <%= comment.body %>&emsp;&emsp;<%= comment.created_at.to_formatted_s %>
+  </p>
 
-<p>
-  <b>Comment:</b>
-  <%= comment.body %>
-</p>
-<% if @posting.user_id == current_user.id %>
-  <td><%= link_to 'Delete', posting_comment_path(@posting, comment),
-          method: :delete,
-          data: { confirm: 'Are you sure?' } %></td>
-<% end %>
-<p>
-  <b>Time posted:</b>
-  <%= comment.created_at.to_formatted_s %>
-</p>
+  <% if @posting.user_id == current_user.id %>
+    <td><%= link_to 'Delete', posting_comment_path(@posting, comment),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+  <% end %>
+
+</li>

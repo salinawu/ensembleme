@@ -1,50 +1,47 @@
-<p>
-  <strong>Author:</strong>
-  <%= User.find_by_id(@posting.user_id).name %>
-</p>
-<p>
-  <strong>Location:</strong>
-  <%= @posting.location %>
-</p>
+<br></br>
+<section class="group-profile">
+  <font size="4">
+    <%= @posting.body %>
+  </font>
+  <br></br>
+  <p>
+    <%= link_to User.find_by_id(@posting.user_id).name,  user_path(User.find_by_id(@posting.user_id))%> || <%= @posting.location %> || <%= @posting.ensemble %>
+  </p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @posting.body %>
-</p>
+</section>
+<section class="message-right">
+  <i><font size="3">Comments</font></i><br></br>
+  <%= render @posting.comments %>
 
-<p>
-  <strong>Ensemble:</strong>
-  <%= @posting.ensemble %>
-</p>
-
-<h2>Comments</h2>
-<%= render @posting.comments %>
-
-<h2>Add a comment:</h2>
-<%= form_for([@posting, @posting.comments.build]) do |f| %>
-  <div class="field">
-    <%= f.label :commenter %><br />
-    <%= f.text_field :commenter %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
-<% if @posting.nearbys(10) %>
-  <h3>Nearby postings</h3>
-  <ul>
-  <% for posting in @posting.nearbys(10) %>
-    <li><%= link_to posting.location, posting %> (<%= posting.distance.round(2) %> miles)</li>
+  <br></br>
+  <i><font size="3">Add a comment</font></i>
+  <%= form_for([@posting, @posting.comments.build]) do |f| %>
+    <div class="field">
+      <%= f.label :commenter, "Name" %><br />
+      <%= f.text_field :commenter %>
+    </div>
+    <div class="field">
+      <%= f.label :body %><br />
+      <%= f.text_area :body %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
   <% end %>
-  </ul>
-<% end %>
+</section>
+<section class="group-profile">
+  <% if User.find_by_id(@posting.user_id) == current_user %>
+    <%= link_to 'Edit', edit_posting_path(@posting) %>
+  <% end %>
+  <% if !@posting.nearbys(10).nil? %>
+  <br></br>
+    <i><font size="3">Nearby Postings</font></i>
+    <ul>
+    <% for posting in @posting.nearbys(10) %>
+      <li><%= link_to posting.location, posting %> (<%= posting.distance.round(2) %> miles)</li>
+    <% end %>
+    </ul>
+  <% end %>
 
-<% if User.find_by_id(@posting.user_id) == current_user %>
-  <%= link_to 'Edit', edit_posting_path(@posting) %> |
-<% end %>
-<%= link_to 'All postings', postings_path %>
+
+</section>

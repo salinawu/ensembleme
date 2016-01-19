@@ -1,43 +1,59 @@
+<br></br>
 <% provide(:title, @user.name) %>
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
-        <%= gravatar_for @user %>
+        <section class = "profile">
+          <%= gravatar_for @user %>
         <%= @user.name %>
-        <div><%= @user.instrument %></div> 
-        <div><%= @user.email %></div>
-        <div> <%=@user.bio =%> </div>
+        <div>
+          <b><i><font size="3">Instrument</font></i></b>
+          <p><%= @user.instrument %></p>
+        </div>
+        <div>
+          <b><i><font size="3">Contact</font></i></b>
+          <p><%= @user.email %></p>
+        </div>
+        <div>
+          <b><i><font size="3">User Bio</font></i></b>
+          <p> <%=@user.bio =%> </p>
+        </div>
+        </section>
       </h1>
     </section>
   </aside>
-  <section>
-    <h3>Groups</h3>
-    <% @user.groups.each do |group| %>
-      <tr>
-        <td><%= link_to group.name, group_path(group) %></td>
-        <% if logged_in? %>
-          <%= link_to 'leave', leave_group_path(group),
-                  data: { confirm: 'Are you sure?' } %>
-        <% end %>
-      </tr>
-    <% end %>
-  </section>
-  <section>
-    <h3>Posts</h3>
-    <% @user.postings.each do |posting| %>
-      <tr>
-        <td><%= link_to posting.location, posting_path(posting) %></td>
-        <% if logged_in? %>
-          <td><%= link_to 'Destroy', posting_path(posting),
-                  method: :delete,
-                  data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </section>
+  <div>
+    <section class = "right-profile">
+      <b><i><font size="3">Groups</font></i></b>
+      <% @user.groups.each do |group| %>
+        <tr>
+          <li>
+            <td><%= link_to group.name, group_path(group) %></td>
+            <% if logged_in? %>
+              <%= link_to 'leave', leave_group_path(group),
+                      data: { confirm: 'Are you sure?' } %>
+          </li>
+          <% end %>
+        </tr>
+      <% end %>
+    </section>
+  </div>
+  <div>
+    <section class="right-profile">
+      <b><i><font size="3">Posts</font></i></b>
+      <% @user.postings.each do |posting| %>
+        <tr>
+          <li>
+            <td><%= link_to posting.location, posting_path(posting) %></td>
+            <% if logged_in? %>
+              <td><%= link_to 'Destroy', posting_path(posting),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } %></td>
+          </li>
+          <% end %>
+        </tr>
+      <% end %>
+    </section>
+  </div> 
 </div>
-<%= link_to 'New posting', new_posting_path %>
-<%= link_to 'Postings', controller: 'postings' %>
-<%= link_to 'New Group', new_group_path %>
-<%= link_to 'Groups', controller: 'groups' %>

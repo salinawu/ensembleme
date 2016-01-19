@@ -1,12 +1,12 @@
 <ul>
-  <%= User.find_by_id(message.user_id).name=%>
+  <%= User.find_by_id(message.user_id).name=%>:
   <tr>
     <td><%= message.body %></td>
   </tr>
-  <%= message.created_at.to_formatted_s =%>
+       <section class = "messages"><font size = "1">&emsp;&emsp;(<%= message.created_at.to_formatted_s =%>)
   <% if message.user_id == current_user.id %>
     <td><%= link_to 'Delete', group_message_path(@group, message),
             method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
+            data: { confirm: 'Are you sure?' } %></td></font> <section>
   <% end %>
 </ul>

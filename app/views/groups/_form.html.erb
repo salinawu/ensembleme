@@ -1,32 +1,38 @@
-<%= form_for @group do |f| %>
+<br></br>
 
+<%= form_for @group do |f| %>
+<b>
   <p>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </p>
+  <br></br>
 
   <p>
-    <%= "Bio: Repertoire, Influences and Inspirations, Goals" %>
+    <%= "Bio: Repertoire, Influences and Inspirations, Goals" %><div></div>
     <!-- <%= f.label :bio %><br> -->
     <%= f.text_field :bio %>
   </p>
+  <br></br>
 
   <p>
-    <%= "Instruments needed" %>
+    <%= "Instruments needed" %><div></div>
     <%= f.label :members do %>
       <%= text_field_tag 'members' %>
     <% end %>
   </p>
+  <br></br>
 
   <p>
-    <%= "Vicinity" %>
+    <%= "Vicinity" %><div></div>
     <%= f.label :vicinity do %>
       <%= number_field_tag 'vicinity' %>
     <% end %>
   </p>
+  <br></br>
 
   <p>
     <%= f.submit %>
   </p>
-
+</b> 
 <% end %>

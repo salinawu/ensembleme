@@ -1,35 +1,45 @@
-<% @group = Group.find(params[:id]) %>
-<h2><%= @group.name =%></h2>
-<h3><%= @group.bio =%></h3>
-<% @group.users.each do |user| %>
-    <ul>
-      <tr>
-        <td><%= link_to user.name, user_path(user) %></td>
-        <td><%= user.email %></td>
-      </tr>
-    </ul> 
-<% end %>
+<br></br>
+<section class = "group-profile">
+  <h1><%= @group.name =%></h1>
+    <i><font size="3">Group Bio</font></i>
+    <p><%= @group.bio =%></p>
+    <i><font size="3">Group members</font></i>
+    <% @group.users.each do |user| %>
+        <li>
+          <tr>
+            <td><%= link_to user.name, user_path(user) %></td> ||
+            <td><%= user.email %></td>
+          </tr>
+        </li>
+    <% end %>
+  </section>
 <% if logged_in? %>
   <% if @group.users.include?(current_user) %>
-    <%= link_to 'leave', leave_group_path(@group) %>
-    <%= link_to 'Edit', edit_group_path(@group) %>
-    <h2>Messages</h2>
-    <%= render @group.messages %>
-    <h2>Add a message:</h2>
-      <%= form_for([@group, @group.messages.build]) do |f| %>
+  <br></br>
+      <section class="message-right">
+    <i><font size="3">Messages</font></i>
+        <%= render @group.messages %>
+            <i><font size="3">Add a message:</font></i>
+          <%= form_for([@group, @group.messages.build]) do |f| %>
 
-        <div class="field">
-          <%= f.label :body %><br />
-          <%= f.text_area :body %>
-        </div>
-        <div class="actions">
-          <%= f.submit %>
-        </div>
-      <% end %>
+            <div class="field">
+              <%= f.label :body %><br />
+              <%= f.text_area :body %>
+            </div>
+            <div class="actions">
+              <%= f.submit %>
+            </div>
+          <% end %>
+      </section>
+      <br></br>
+      <section class = "group-profile">
+          <%= link_to 'leave', leave_group_path(@group) %> ||
+          <%= link_to 'edit', edit_group_path(@group) %>
+        </section>
   <% else %>
-    <%= link_to 'join', join_group_path(@group) %>
+  <section class = "group-profile">
+    <br></br>
+    <%= link_to 'join group', join_group_path(@group) %>
+  </section>
   <% end %>
 <% end %>
-<div>
-  <%= link_to 'All groups', groups_path %>
-</div>
