@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link href='https://fonts.googleapis.com/css?family=Raleway|Cabin' rel='stylesheet' type='text/css'>
     <title>EnsembleMe</title>
     <%= stylesheet_link_tag 'application', media: 'all',
@@ -18,7 +18,7 @@
       <div class="container-fluid">
         <div class="navbar-header page-scroll">
             <% if not logged_in? %>
-              <a class="navbar-brand page-scroll" href="#page-top">
+              <a class="navbar-brand page-scroll" href="/#page-top">
                 <h1>EnsembleMe</h1>
               </a>
             <%end%>
@@ -51,7 +51,7 @@
           </div>
         <% else %>
           <div class="collapse navbar-collapse navbar-ex1-collapse">
-              <ul class="nav navbar-nav">
+              <ul class="nav navbar-nav" data-spy="scroll">
                   <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                   <li class="hidden">
                       <a class="page-scroll" href="#page-top"></a>
