@@ -17,7 +17,7 @@
       <div class="container-fluid">
         <div class="navbar-header page-scroll">
             <% if not logged_in? %>
-              <a class="navbar-brand page-scroll" href="/#page-top">
+              <a class="navbar-brand page-scroll" href="#page-top">
                 <h1>EnsembleMe</h1>
               </a>
             <%end%>
@@ -67,13 +67,11 @@
       </div>
     </nav>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
+    <!-- <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- Scrolling Nav JavaScript -->
     <script src="js/jquery.easing.min.js"></script>
-    <script src="js/scrolling-nav.js"></script>
+    <script src="js/scrolling-nav.js"></script> -->
+    
     <%= yield %>
   </body>
 </html>
