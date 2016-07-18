@@ -40,8 +40,9 @@ textarea {
 @media(min-width:767px) {
     .navbar {
         background-color: #fff;
+        height: 1px;
         opacity: .3;
-        padding: 20px 0;
+        padding: 6px 0;
         -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
         -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
         transition: background .5s ease-in-out,padding .5s ease-in-out;
@@ -87,11 +88,13 @@ textarea {
 }
 
 .navbar-default {
-    background-color: rgba(30, 0, 0, 0.1);;
+    background-color: rgba(30, 0, 0, 0.1);
 }
 
 .intro-section {
     background-image: url("https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/12645195_986226574806795_2823584859074022411_n.jpg?oh=5b7159985c821105db7f1ffc90638c69&oe=582CA475");
+    background-attachment: fixed;
+    background-position: center;
     height: 100%;
     padding-top: 150px;
     text-align: center;
